@@ -1,0 +1,168 @@
+<!-- views/masyarakat.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Masyarakat</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Data Masyarakat</h1>
+
+    <div id="message"></div>
+
+    <div id="form-container">
+        <% if (typeof editData === 'undefined') { %>
+            <h2>Tambah Data Masyarakat</h2>
+            <form id="form-create" action="/masyarakat" method="post">
+                <input type="text" name="nik" id="nik" placeholder="NIK" required>
+                <input type="text" name="nama" id="nama" placeholder="Nama" required>
+                <input type="text" name="alamat" id="alamat" placeholder="Alamat" required>
+                <button type="submit">Tambah</button>
+            </form>
+        <% } else { %>
+            <h2>Edit Data Masyarakat</h2>
+            <form id="form-update" action="/masyarakat/update/<%= editData.id %>" method="post">
+                <input type="text" name="nik" id="nik" placeholder="NIK" value="<%= editData.cpm_NIK %>" required>
+                <input type="text" name="nama" id="nama" placeholder="Nama" value="<%= editData.cpm_name %>" required>
+                <input type="text" name="alamat" id="alamat" placeholder="Alamat" value="<%= editData.cpm_address %>" required>
+                <button type="submit">Simpan Perubahan</button>
+            </form>
+        <% } %>
+    </div>
+
+    <div id="data-container">
+        <h2>Data Masyarakat</h2>
+        <table id="masyarakat-table">
+            <thead>
+                <tr>
+                    <th>NIK</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(person) { %>
+                    <tr>
+                        <td><%= person.cpm_NIK %></td>
+                        <td><%= person.cpm_name %></td>
+                        <td><%= person.cpm_address %></td>
+                        <td>
+                            <form id="form-edit" action="/masyarakat/<%= person.id %>" method="get">
+                                <button type="submit">Edit</button>
+                            </form>
+                            <form id="form-delete" action="/masyarakat/delete/<%= person.id %>" method="post">
+                                <button type="submit">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/scripts.js"></script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Masyarakat</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Data Masyarakat</h1>
+
+    <div id="message"></div>
+
+    <div id="form-container">
+        <h2>Tambah Data Masyarakat</h2>
+        <form id="form-create" action="/masyarakat" method="post">
+            <input type="text" name="nik" id="nik" placeholder="NIK" required>
+            <input type="text" name="nama" id="nama" placeholder="Nama" required>
+            <input type="text" name="alamat" id="alamat" placeholder="Alamat" required>
+            <button type="submit">Tambah</button>
+        </form>
+    </div>
+
+    <div id="data-container">
+        <h2>Data Masyarakat</h2>
+        <table id="masyarakat-table">
+            <thead>
+                <tr>
+                    <th>NIK</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < data.length; i++) { %>
+                    <tr>
+                        <td><%= data[i].cpm_NIK %></td>
+                        <td><%= data[i].cpm_name %></td>
+                        <td><%= data[i].cpm_address %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/scripts.js"></script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Masyarakat</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Data Masyarakat</h1>
+
+    <div id="message"></div>
+
+    <div id="form-container">
+        <h2>Tambah Data Masyarakat</h2>
+        <form id="form-create" action="/masyarakat" method="post">
+            <input type="text" name="nik" id="nik" placeholder="NIK" required>
+            <input type="text" name="nama" id="nama" placeholder="Nama" required>
+            <input type="text" name="alamat" id="alamat" placeholder="Alamat" required>
+            <button type="submit">Tambah</button>
+        </form>
+    </div>
+
+    <div id="data-container">
+        <h2>Data Masyarakat</h2>
+        <table id="masyarakat-table">
+            <thead>
+                <tr>
+                    <th>NIK</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < data.length; i++) { %>
+                    <tr>
+                        <td><%= data[i].cpm_NIK %></td>
+                        <td><%= data[i].cpm_name %></td>
+                        <td><%= data[i].cpm_address %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/scripts.js"></script>
+</body>
+</html> -->
